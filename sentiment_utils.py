@@ -76,20 +76,24 @@ def GetSummary(inText, method = 'summa'):
         return summary_sumy
 
     elif method == 'summa':
-        summary_summa = summarizer.summarize(inText, ratio = 0.3)
-        summary_summa
+        summary_summa = summarizer.summarize(inText, ratio = 0.2)
+        return summary_summa
     else:
         print(f'{method} is not defined')
         return None
 
-def GetRelavency(inText, kwList):
+def GetRelavency(inText, kwList, debugmode = False):
     nlp = spacy.load('en_core_web_sm')
     doc = nlp(inText)
 
     rSource = 0
     for ent in doc.ents:
-        if ent.text.lower() in [kw.lower() for kw in kwList]:
+        ent_text = ent.text.lower().strip()
+        if ent_text in [kw.lower() for kw in kwList]:
             rSource += 1
+
+            if debugmode:
+                print(f'Found {ent_text} relavent.')
 
     return rSource
 
@@ -99,7 +103,7 @@ def GetSentimentScore(inText, method = 'bespoke'):
     else:
         SIA = nltk_SIA()
 
-    sent_text = sent_tokenize( summary_summa)
+    sent_text = sent_tokenize( inText)
 
     sent_count = 0
     sent_sum = 0

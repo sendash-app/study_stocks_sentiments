@@ -78,3 +78,43 @@ def GetTimeToMktOpen( DateTimeObj, ExchangeName, debugmode = False):
             print( f'\n--- Market Open Time ---\n{sch["market_open"]}')
 
         return { 'status': 'closed', 'd-h-m-s': days_hours_mins_secs(tdelta)}
+
+def GetNextMktDate(DateTimeObj, ExchangeName):
+    nextTD = MarketDateAdj(DateTimeObj, 1, ExchangeName)
+    nextTD = nextTD.to_pydatetime()
+
+    if IsMarketOpen(DateTimeObj, ExchangeName):
+        return nextTD
+    else:
+        MktTimeDict = GetTimeToMktOpen(DateTimeObj, ExchangeName)
+        d, h, m, s = MktTimeDict['d-h-m-s']
+
+        if d > 0:
+            return nextTD
+        else:
+            s += m * 60 + h * 3600
+            timed = timedelta(seconds = s)
+
+            nextTD = DateTimeObj + timed
+
+            return nextTD.date()
+
+def GetNextMktDate(DateTimeObj, ExchangeName):
+    nextTD = MarketDateAdj(DateTimeObj, 1, ExchangeName)
+    nextTD = nextTD.to_pydatetime()
+
+    if IsMarketOpen(DateTimeObj, ExchangeName):
+        return nextTD
+    else:
+        MktTimeDict = GetTimeToMktOpen(DateTimeObj, ExchangeName)
+        d, h, m, s = MktTimeDict['d-h-m-s']
+
+        if d > 0:
+            return nextTD
+        else:
+            s += m * 60 + h * 3600
+            timed = timedelta(seconds = s)
+
+            nextTD = DateTimeObj + timed
+
+            return nextTD.date()

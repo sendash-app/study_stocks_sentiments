@@ -2,6 +2,14 @@
 A short study on the return of stock prices vs news/ tweets sentiments
 
 ## Packages Used/ Credit
+We stands on the shoulders of Giants! :muscle:
+
+To install the various packages we used:
+```
+$ pip install -r requirements.txt
+$ python -m spacy download en_core_web_sm
+```
+
 * News Article Summarization using **TextRank** algorithim: [summa](https://github.com/summanlp/textrank), [sumy](https://github.com/miso-belica/sumy)
 * Relevancy Score using the help of [spaCy](https://spacy.io/usage/linguistic-features#section-named-entities)'s **Named Entities** function
 * Sentiment Score generated using [vaderSentiment](https://github.com/cjhutto/vaderSentiment) with [stock_market_lexicon](https://github.com/nunomroliveira/stock_market_lexicon); for installation, see [below]()
