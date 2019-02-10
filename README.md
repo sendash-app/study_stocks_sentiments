@@ -1,6 +1,11 @@
 # study_stocks_sentiments
 A short study on the return of stock prices vs news/ tweets sentiments
 
+## Packages Used/ Credit
+* News Article Summarization using **TextRank** algorithim: [summa](https://github.com/summanlp/textrank), [sumy](https://github.com/miso-belica/sumy)
+* Relevancy Score using the help of [spaCy](https://spacy.io/usage/linguistic-features#section-named-entities)'s **Named Entities** function
+* Sentiment Score generated using [vaderSentiment](https://github.com/cjhutto/vaderSentiment) with [stock_market_lexicon](https://github.com/nunomroliveira/stock_market_lexicon); for installation, see [below]()
+
 ## Vader with [`stock_market_lexicon`](https://github.com/nunomroliveira/stock_market_lexicon)
 For sentiment analysis we rely on the [vaderSentiment](https://github.com/cjhutto/vaderSentiment) package. To install (here we assume you are using Python 3 and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/); if you don't, you should):  
 ```
