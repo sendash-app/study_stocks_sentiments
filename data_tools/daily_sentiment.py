@@ -24,7 +24,7 @@ def GenerateDailySentimentTable(df):
     close_mkt['_relevance'].dropna(inplace=True)
     classification = [column for column in close_mkt.columns]
     DailySentimentTable = close_mkt[['_sentiment','stockcode','TradeDate']].groupby(['stockcode','TradeDate']).mean()
-    DailySentimentTable = sent_table.reset_index()
+    DailySentimentTable = DailySentimentTable.reset_index()
     return DailySentimentTable
        
 
