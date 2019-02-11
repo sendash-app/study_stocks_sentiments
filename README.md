@@ -10,8 +10,9 @@ $ pip install -r requirements.txt
 $ python -m spacy download en_core_web_sm
 ```
 
-* News Article Summarization using **TextRank** algorithim: [summa](https://github.com/summanlp/textrank), [sumy](https://github.com/miso-belica/sumy)
-  * [review of Extractive Text Summarization Techniques](https://medium.com/@ondenyi.eric/extractive-text-summarization-techniques-with-sumy-3d3b127a0a32)
+* News Article Summarization using **TextRank** by [summa](https://github.com/summanlp/textrank), and **LexRank** by  [sumy](https://github.com/miso-belica/sumy)
+  * [review of Text Summarization techniques and why we picked **LexRank**](https://rare-technologies.com/text-summarization-in-python-extractive-vs-abstractive-techniques-revisited/)
+  * [sumy use example](https://medium.com/@ondenyi.eric/extractive-text-summarization-techniques-with-sumy-3d3b127a0a32)
 * Relevancy Score using the help of [spaCy](https://spacy.io/usage/linguistic-features#section-named-entities)'s **Named Entities** function
 * Sentiment Score generated using [vaderSentiment](https://github.com/cjhutto/vaderSentiment) with [stock_market_lexicon](https://github.com/nunomroliveira/stock_market_lexicon); for installation, see [below]()
 

@@ -6,6 +6,9 @@ import re
 from summa import summarizer
 
 from sumy.summarizers.lsa import LsaSummarizer
+from sumy.summarizers.lex_rank import LexRankSummarizer
+from sumy.summarizers.luhn import LuhnSummarizer
+from sumy.summarizers.text_rank import TextRankSummarizer
 from sumy.nlp.stemmers import Stemmer
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.utils import get_stop_words
@@ -81,15 +84,28 @@ def GetCleanText(inText):
     return outText
 
 def GetSummary(inText, method = 'summa'):
-    if method == 'sumy':
+    if 'sumy' in method:
         lang = 'english'
         sent_count = 5
 
         parser = PlaintextParser.from_string(inText, Tokenizer(lang))
-        LsaSum = LsaSummarizer( Stemmer(lang))
-        LsaSum.stop_words = get_stop_words(lang)
 
-        sumy_sents = LsaSum(parser.document, sent_count)
+        # Select Algo
+        if method == 'sumy-lsa':
+            model = LsaSummarizer( Stemmer(lang))
+        elif method == 'sumy-lex_rank':
+            model = LexRankSummarizer( Stemmer(lang))
+        elif method == 'sumy-luhn':
+            model = LuhnSummarizer( Stemmer(lang))
+        elif method == 'sumy-text_rank':
+            model = TextRankSummarizer( Stemmer(lang))
+        else:
+            print(f'{method} is not defined')
+            return None
+
+        model.stop_words = get_stop_words(lang)
+
+        sumy_sents = model(parser.document, sent_count)
         summary_sumy = ' '.join(
                         [str(sent) for sent in sumy_sents]
                         )
